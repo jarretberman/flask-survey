@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="/answer" method="post" id="question_form">
+    <h1>Question {{num+1}}</h1>
+    <label>{{question.question}}</label>
+    {% if not question.allow_text %}
+        <select form = "question_form" name ='answer'>
+        {% for choice in question.choices %}
+        <option value = {{choice}}>{{choice}}</option>
+        {% endfor %}
+        </select>
+    {% else %}
+    <input type="text" name="answer" id="">
+    {% endif %}
+    <button>Next!</button>
+</form>
+{% endblock %}
