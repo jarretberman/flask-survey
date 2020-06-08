@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, session
+from flask import Flask, request, render_template, redirect, session, flash
 # from flask_debugtoolbar import DebugToolbarExtension
 from surveys import Survey, Question, surveys
 
@@ -22,6 +22,7 @@ def question_page(num):
     responses = session['responses']
     #redirect to proper sequential question
     if num > len(responses) or num < len(responses):
+        flash("Invalid Question, Please answer this one.")
         return redirect(f'/questions/{len(responses)}')
 
     #remove access to questions after completion
